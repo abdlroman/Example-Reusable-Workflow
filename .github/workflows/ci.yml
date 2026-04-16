@@ -1,0 +1,37 @@
+name: Reusable CI/CD Workflow
+
+on:
+  workflow_call:
+    inputs:
+      environment:
+        required: true
+        type: string
+    secrets:
+      docker_username:
+        required: true
+      docker_password:
+        required: true
+
+jobs:
+  build-and-deploy:
+    runs-on: self-hosted
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Build Docker image
+        run: docker build -t mini-project:${{ inputs.environment }} .
+
+      - name: Login Docker
+        run: echo ${{ secrets.docker_password }} | docker login -u ${{ secrets.docker_username }} --password-stdin
+
+      - name: Push Docker image
+        run: docker push mini-project:${{ inputs.environment }}
+
+      - name: Load image into Minikube
+        run: minikube image load mini-project:${{ inputs.environment }}
+
+      - name: Apply Kubernetes manifests
+        run: |
+          kubectl apply -f k8s/deployment.yaml
+          kubectl apply -f k8s/service.yaml
