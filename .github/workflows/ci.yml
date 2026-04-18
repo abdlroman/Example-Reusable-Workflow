@@ -24,6 +24,10 @@ jobs:
         shell: powershell
         env:
           DOCKER_USERNAME: ${{ secrets.docker_username }}
+          
+      - name: Logout Docker first
+        run: docker logout
+        shell: powershell
 
       - name: Login to Docker Hub
         run: echo $env:DOCKER_PASSWORD | docker login -u $env:DOCKER_USERNAME --password-stdin
