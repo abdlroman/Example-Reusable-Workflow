@@ -24,7 +24,7 @@ jobs:
         shell: powershell
 
       - name: Login to Docker Hub
-        run: echo "${{ secrets.docker_password }}" | docker login -u "${{ secrets.docker_username }}" --password-stdin
+        run: echo $env:DOCKER_PASSWORD | docker login -u $env:DOCKER_USERNAME --password-stdin
         shell: powershell
 
       - name: Push Docker image
