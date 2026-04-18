@@ -135,3 +135,15 @@
 [2026-04-16 12:48:44Z INFO Terminal] WRITE LINE: Current runner version: '2.333.1'
 [2026-04-16 12:48:44Z INFO Terminal] WRITE LINE: 2026-04-16 12:48:44Z: Listening for Jobs
 [2026-04-16 12:48:44Z INFO JobDispatcher] Set runner/worker IPC timeout to 30 seconds.
+[2026-04-16 13:08:43Z INFO Runner] Received ForceTokenRefreshMessage
+[2026-04-16 13:08:43Z INFO BrokerMessageListener] Reload credentials.
+[2026-04-16 13:08:43Z INFO ConfigurationStore] HasCredentials()
+[2026-04-16 13:08:43Z INFO ConfigurationStore] stored True
+[2026-04-16 13:08:43Z INFO CredentialManager] GetCredentialProvider
+[2026-04-16 13:08:43Z INFO CredentialManager] Creating type OAuth
+[2026-04-16 13:08:43Z INFO CredentialManager] Creating credential type: OAuth
+[2026-04-16 13:08:43Z INFO RSAEncryptedFileKeyManager] Loading RSA key parameters from file C:\Users\Abdulrohman\Documents\Devopsproject\Example-Reusable-Workflow\actions-runner\.credentials_rsaparams
+[2026-04-16 13:08:43Z INFO BrokerMessageListener] Connection to Broker Server recreated.
+[2026-04-16 13:08:43Z INFO RSAEncryptedFileKeyManager] Loading RSA key parameters from file C:\Users\Abdulrohman\Documents\Devopsproject\Example-Reusable-Workflow\actions-runner\.credentials_rsaparams
+[2026-04-16 13:08:43Z INFO RSAEncryptedFileKeyManager] Loading RSA key parameters from file C:\Users\Abdulrohman\Documents\Devopsproject\Example-Reusable-Workflow\actions-runner\.credentials_rsaparams
+[2026-04-16 13:08:44Z INFO GitHubActionsService] AAD Correlation ID for this token request: Unknown
