@@ -21,26 +21,26 @@ jobs:
 
       - name: Build Docker image
         run: docker build -t mini-project:${{ inputs.environment }} .
-        shell: bash
+        shell: powershell
 
       - name: Login to Docker Hub
         run: echo "${{ secrets.docker_password }}" | docker login -u "${{ secrets.docker_username }}" --password-stdin
-        shell: bash
+        shell: powershell
 
       - name: Push Docker image
         run: docker push mini-project:${{ inputs.environment }}
-        shell: bash
+        shell: powershell
 
       - name: Load image into Minikube
         run: minikube image load mini-project:${{ inputs.environment }}
-        shell: bash
+        shell: powershell
 
       - name: Apply Kubernetes manifests
         run: |
           kubectl apply -f k8s/deployment.yaml
           kubectl apply -f k8s/service.yaml
-        shell: bash
+        shell: powershell
 
       - name: Verify deployment status
         run: kubectl rollout status deployment/mini-project -n default --timeout=5m
-        shell: bash
+        shell: powershell
