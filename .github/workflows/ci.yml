@@ -23,8 +23,8 @@ jobs:
         run: docker build -t $env:DOCKER_USERNAME/mini-project:${{ inputs.environment }} .
         shell: powershell
         env:
-          DOCKER_USERNAME: ${{ secrets.docker_username }}
-          
+          USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+
       - name: Logout Docker first
         run: docker logout
         shell: powershell
@@ -33,15 +33,16 @@ jobs:
         run: echo $env:DOCKER_PASSWORD | docker login -u $env:DOCKER_USERNAME --password-stdin
         shell: powershell
         env:
-          DOCKER_USERNAME: ${{ secrets.docker_username }}
-          DOCKER_PASSWORD: ${{ secrets.docker_password }}
+          DOCKER_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Push Docker image
         run: docker push $env:DOCKER_USERNAME/mini-project:${{ inputs.environment }}
         shell: powershell
         env:
-          DOCKER_USERNAME: ${{ secrets.docker_username }}
-          
+          DOCKER_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKERHUB_TOKEN }}
+
       - name: Load image into Minikube
         run: minikube image load mini-project:${{ inputs.environment }}
         shell: powershell
