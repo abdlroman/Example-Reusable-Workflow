@@ -40,8 +40,8 @@ jobs:
         run: docker push $env:DOCKER_USERNAME/mini-project:${{ inputs.environment }}
         shell: powershell
         env:
-          USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
-          PASSWORD: ${{ secrets.DOCKERHUB_TOKEN }}
+          DOCKER_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Load image into Minikube
         run: minikube image load mini-project:${{ inputs.environment }}
