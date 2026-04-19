@@ -23,7 +23,7 @@ jobs:
         run: docker build -t $env:DOCKER_USERNAME/mini-project:${{ inputs.environment }} .
         shell: powershell
         env:
-          USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+          DOCKER_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
 
       - name: Logout Docker first
         run: docker logout
